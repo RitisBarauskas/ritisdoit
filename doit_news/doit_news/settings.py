@@ -86,6 +86,13 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR / 'dev_static',
+]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.DoitUser'
+
+LOGIN_REDIRECT_URL = 'articles:index'
+LOGOUT_REDIRECT_URL = 'users:login'
