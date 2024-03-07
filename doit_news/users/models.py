@@ -20,4 +20,4 @@ class DoitUser(AbstractUser):
         ordering = ['date_joined']
 
     def __str__(self):
-        return self.email
+        return self.get_full_name()

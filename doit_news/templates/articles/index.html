@@ -1,7 +1,23 @@
 {% extends 'base.html' %}
 
-{% block title %}Главная страница{% endblock %}
+{% block title %}Последние новости{% endblock %}
 
 {% block content %}
-    <h1>Главная страница</h1>
+    <h1>Последние новости</h1>
+    <nav class="container">
+        {% for category in categories %}
+            {% url 'articles:category' category.id as category_url%}
+            <a class="btn {% if request.path == category_url %}btn-primary{% else %}btn-info{% endif %}" href="{{ category_url }}">{{ category.name }}</a>
+        {% endfor %}
+    </nav>
+    <div class="container">
+        {% for article in articles %}
+            <article class="border-bottom border-danger">
+                <h2 class="card-title">{{ article.title }}</h2>
+                <p class="text-right">{{ article.created_at }}</p>
+                <p>{{ article.content }}</p>
+                <p class="text-right">{{ article.author.get_full_name }}</p>
+            </article>
+    {% endfor %}
+    </div>
 {% endblock %}
